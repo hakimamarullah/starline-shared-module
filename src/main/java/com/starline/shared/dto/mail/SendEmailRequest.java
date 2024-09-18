@@ -73,11 +73,11 @@ public class SendEmailRequest {
         this.textBody = textBody;
     }
 
-    public Boolean getHtml() {
+    public Boolean getIsHtml() {
         return isHtml;
     }
 
-    public void setHtml(Boolean html) {
+    public void setIsHtml(Boolean html) {
         isHtml = html;
     }
 }
