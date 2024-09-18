@@ -7,6 +7,7 @@ Created on 9/18/2024 2:53 PM
 Version 1.0
 */
 
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Data
 public class SendEmailRequest implements Serializable {
 
     private List<String> recipients;
@@ -23,7 +26,7 @@ public class SendEmailRequest implements Serializable {
     private String textBody;
     private Boolean isHtml;
 
-    public List<EmailAttachment> getAttachments() throws IOException {
+    public List<EmailAttachment> getEmailAttachments() throws IOException {
         List<EmailAttachment> emailAttachments = new ArrayList<>();
         if (attachments != null) {
             emailAttachments = new ArrayList<>();
@@ -35,55 +38,4 @@ public class SendEmailRequest implements Serializable {
         return emailAttachments;
     }
 
-    public List<String> getRecipients() {
-        return recipients;
-    }
-
-    public void setRecipients(List<String> recipients) {
-        this.recipients = recipients;
-    }
-
-    public List<String> getCc() {
-        return cc;
-    }
-
-    public void setCc(List<String> cc) {
-        this.cc = cc;
-    }
-
-    public List<MultipartFile> getMultipartAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(List<MultipartFile> attachments) {
-        this.attachments = attachments;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getTextBody() {
-        return textBody;
-    }
-
-    public void setTextBody(String textBody) {
-        this.textBody = textBody;
-    }
-
-    public Boolean getIsHtml() {
-        return isHtml;
-    }
-
-    public void setIsHtml(Boolean html) {
-        isHtml = html;
-    }
-
-    public String toString() {
-        return "SendEmailRequest{" + "recipients=" + recipients + ", cc=" + cc + ", attachments=" + attachments + ", subject='" + subject + '\'' + ", textBody='" + textBody + '\'' + ", isHtml=" + isHtml + '}';
-    }
 }

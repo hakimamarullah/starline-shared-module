@@ -7,8 +7,11 @@ Created on 9/18/2024 7:50 PM
 Version 1.0
 */
 
+import lombok.Data;
+
 import java.io.Serializable;
 
+@Data
 public class EmailAttachment implements Serializable {
     private byte[] content;
     private String fileName;
@@ -23,35 +26,4 @@ public class EmailAttachment implements Serializable {
         this.contentType = contentType;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    @Override
-    public String toString() {
-        return "EmailAttachment{" +
-                "fileName='" + fileName + '\'' +
-                ", contentType='" + contentType + '\'' +
-                '}';
-    }
 }
