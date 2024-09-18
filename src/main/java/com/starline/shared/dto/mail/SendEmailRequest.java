@@ -10,27 +10,29 @@ Version 1.0
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class SendEmailRequest {
+public class SendEmailRequest implements Serializable {
 
     private List<String> recipients;
     private List<String> cc;
-    private List<MultipartFile> attachments;
+    private transient List<MultipartFile> attachments;
     private String subject;
     private String textBody;
     private Boolean isHtml;
 
-    public Map<String, byte[]> getAttachmentFiles() throws IOException {
-        Map<String, byte[]> files = new HashMap<>();
-        if (attachments != null && !attachments.isEmpty()) {
-            for (var file : attachments) {
-                files.put(file.getOriginalFilename(), file.getBytes());
+    public List<EmailAttachment> getAttachments() throws IOException {
+        List<EmailAttachment> emailAttachments = new ArrayList<>();
+        if (attachments != null) {
+            emailAttachments = new ArrayList<>();
+            for (MultipartFile attachment : attachments) {
+                emailAttachments.add(new EmailAttachment(attachment.getBytes(), attachment.getOriginalFilename(), attachment.getContentType()));
             }
+            return emailAttachments;
         }
-        return files;
+        return emailAttachments;
     }
 
     public List<String> getRecipients() {
@@ -49,7 +51,7 @@ public class SendEmailRequest {
         this.cc = cc;
     }
 
-    public List<MultipartFile> getAttachments() {
+    public List<MultipartFile> getMultipartAttachments() {
         return attachments;
     }
 
