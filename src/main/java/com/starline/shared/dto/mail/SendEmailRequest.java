@@ -80,4 +80,8 @@ public class SendEmailRequest {
     public void setIsHtml(Boolean html) {
         isHtml = html;
     }
+
+    public String toString() {
+        return "SendEmailRequest{" + "recipients=" + recipients + ", cc=" + cc + ", attachments=" + attachments + ", subject='" + subject + '\'' + ", textBody='" + textBody + '\'' + ", isHtml=" + isHtml + '}';
+    }
 }
